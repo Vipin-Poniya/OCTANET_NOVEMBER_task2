@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>to do list= bole to-> kal se karunga</title>
+    <!-- <link rel="stylesheet" href="todo.css"> -->
+    <!-- <link rel="stylesheet" href="todo.js"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        *
+{
+
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+.container
+{
+    width: 100%;
+    min-width: 100vh;
+    background: linear-gradient(135deg,#153677,#4e085f);
+padding: 140px;
+height: 1000px;
+
+}
+.todoapp
+{
+width: 100%;
+max-width: 540px;
+background: #fff;
+margin: -43px auto 20px;
+padding: 40px 30px 70px;
+border: 10px;
+border-radius: 18px;
+
+}
+
+.todoapp h2
+{
+color:#002765 ;
+display: flex;
+margin-bottom: 20px;
+
+
+
+}
+.todoapp h2 img
+{
+
+
+    width: 213px;
+    margin-left: 78px;
+    border-radius: 24px;
+}
+.row
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #edeef0;
+    border-radius: 30px;
+    padding-left: 20px;
+    margin-bottom: 25px;
+
+}
+ .row input
+{
+flex: 1;
+border: none;
+padding:10px ;
+outline:none ;
+background:transparent ;
+font-weight: 14px;
+}
+.button
+{
+border: 1px;
+padding: 3px 18px;
+background: #0966b8;
+color: black;
+font-size: 26px;
+cursor: pointer;
+outline: none;
+border-radius: 40px;
+
+
+}
+ ul li{
+list-style: none;
+font-size: 24px;
+
+padding: 12px 8px 12px 50px;
+user-select: none;
+cursor: pointer;
+position: relative;
+}
+  ul li::before{
+    content: '';
+    position: absolute;
+    height: 28px;
+    width: 28px;
+    justify-content: space-between;
+    border-radius: 50%;
+    background-image:url(img/unchecked.jpeg) ;
+    background-size: cover;
+    background-position: center;
+    top: 12px;
+left :0;
+}
+.checked{
+color: #555;
+text-decoration: line-through;
+}
+ .checked::before{
+
+    background-image: url(img/checked.jpeg);
+}
+ul li span {
+position: absolute;
+right: 0;
+top: 5px;
+width: 40px;
+height: 40px;
+font-size: 22px;
+color: #555;
+line-height: 40px;
+text-align: 40px;
+border-radius: 50%;
+
+}
+ul li span:hover{
+    background: #edeef0;
+}
+@media(max-width:1600px){
+    .container
+{
+    width: 100%;
+    min-width: 100vh;
+    background: linear-gradient(135deg,#153677,#4e085f);
+padding: 140px;
+height: 1000px;
+
+}
+.todoapp h2 img {
+    width: 103px;
+    margin-left: 48px;
+    border-radius: 14px;
+}
+
+}
+footer{
+    background: #111;width:auto; text-align: center; height: 70px; 
+}
+ .cc div{
+    color: #fff;
+text-align: center;
+ }
+ footer.c1{
+ height: 20px;
+ width: 20px;
+ margin: auto;
+ padding: 20px;
+ }
+
+    </style>
+
+</head>
+<body>
+    <div>
+<div class="container">
+<div class="todoapp">
+    <h2>Kal se pakka Karunga 😎 <img src="img/lazy bagad billa.jpg" ></h2>
+    <div class="row">
+        <input type="text" id="inputtext" placeholder="kaam likh edhar😒">
+        <div class="button" onclick="addTask()">Add</div>
+    </div>
+    <ul id="listcontainer">
+<!-- <li class="checked">task1</li>
+<li>task2</li>
+<li>task3</li> -->
+
+
+    </ul>
+</div>
+
+</div>
+ 
+<footer class="cc">
+    <div>
+        <p> Mr.DHRUVA❤️❤️&copy;2023. All Rights Reserved.</p>
+    </div>
+    <div class="c1">
+<a target="blank" href="https://www.instagram.com/" title="Instagram" class="text-black"><i class="fa-brands fa-instagram"></i></a>
+<a target="blank" href=" https://www.facebook.com/home.php" title="Facebook" class="text-black"><i class="fa-brands fa-facebook"></i>
+</a>
+<a target="blank" href="https://www.linkedin.com/feed/" title="Linkedin" class="text-black"><i class="fa-brands fa-linkedin"></i></a>
+<a target="blank" href=" https://www.youtube.com/channel/UCToptDyWKSWKsHems_VDVDg" title="Youtube" class="text-black"><i class="fa-brands fa-youtube"></i></a>
+
+    
+    <!-- <div>
+        <a href="">Privacy Policy</a>
+        <a href="">Terms and Service</a>
+        <a href="">Contact</a>
+    </div> -->
+</footer>
+
+
+<script >
+const inputtext=document.getElementById("inputtext");
+const listcontainer=document.getElementById("listcontainer");
+function addTask() {
+    if (inputtext.value === '') {
+        alert("you must write something");
+    }
+    else {
+        let li = document.createElement("li");
+        li.innerHTML = inputtext.value;
+        listcontainer.appendChild(li);
+
+        let span = document.createElement("span");
+        span.innerHTML = "\u00d7";
+        li.appendChild(span);
+    }
+    inputtext.value = "";
+    savedata();
+}
+
+listcontainer.addEventListener("click",function(e){
+    if(e.target.tagName === "LI"){
+        e.target.classList.toggle("checked");
+        savedata();
+    }
+    else if(e.target.tagName ==="SPAN"){
+        e.target.parentElement.remove();
+        savedata();
+    }
+},false);
+function savedata(){
+localStorage.setItem("data", listcontainer.innerHTML);
+}
+function showtask(){
+    listcontainer.innerHTML = localStorage.getItem("data");
+}
+showtask();
+</script>
+</body>
+</html>
